@@ -142,7 +142,9 @@ namespace MOD005424_FuellingAroundLTD
                 WriteAt("Please type the number of an available pump to direct the next customer to:", 0, 5);
                 WriteAt("Number of cars arrived at the petrol station = " + cars, 90, 4);
                 WriteAt("Number of cars in the queue still to be fuelled = " + (cars - carsFuelled), 90, 5);
-
+                WriteAt("Today's petrol price pe Litre is £1.12", 90, 0);
+                WriteAt("", 0, 6);                    
+                
                 if (Console.KeyAvailable)
                 {
 
