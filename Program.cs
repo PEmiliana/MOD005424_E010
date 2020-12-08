@@ -137,7 +137,7 @@ namespace MOD005424_FuellingAroundLTD
                 WriteAt("Commission owed to the attendant = £" + (carsFuelled * 27f * 1.12f / 100), 90, 3);
                 WriteAt("Number of cars that left without being fuelled = 0", 90, 6);
 
-                // The reason why the unswer is always 0 is because the remaining cars are still in the queue.
+                // The unswer is always 0 (on line 138) because the remaining cars are still in the queue.
 
                 WriteAt("Please type the number of an available pump to direct the next customer to:", 0, 5);
                 WriteAt("Number of cars arrived at the petrol station = " + cars, 90, 4);
