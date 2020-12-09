@@ -70,7 +70,9 @@ namespace MOD005424_FuellingAroundLTD
                 Pump pump = new Pump(id.ToString());
                 pumps.Add(pump);
             }
-
+            
+            // while true with a thread.sleep to refresh the screen every 100 miliseconds
+            
             while (true)
             {
 
