@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Timers;
@@ -7,7 +7,7 @@ using System.Timers;
 
 namespace MOD005424_FuellingAroundLTD
 {
-    class Program
+     public class Program
     {
         protected static int origRow;
         protected static int origCol;
@@ -15,13 +15,15 @@ namespace MOD005424_FuellingAroundLTD
         protected static int pumpNumber = 0;
         public static System.Timers.Timer aTimer;
         private static int cars;
+        static Random random = new Random();
+        public static List<float> litresDispencedList = new List<float>();
 
 
         // Timer code from https://docs.microsoft.com/en-us/dotnet/api/system.timers.timer?view=net-5.0
         // This timer increments the cars variable 
         public static void SetTimer()
         {
-            // Create a timer with a 18 second interval.
+            // Create a timer with a 1.5 second interval.
             aTimer = new System.Timers.Timer(1500);
             aTimer.AutoReset = true;
             // Hook up the Elapsed event for the timer. 
@@ -34,7 +36,10 @@ namespace MOD005424_FuellingAroundLTD
         {
 
             cars++;
-            Console.WriteLine(cars);
+            aTimer.Stop();
+            aTimer.Interval = random.Next(1500, 2200); // set the next time interval to be between 1.5 to 2.2 seconds
+            aTimer.Start();
+        
         }
         
 
@@ -70,9 +75,7 @@ namespace MOD005424_FuellingAroundLTD
                 Pump pump = new Pump(id.ToString());
                 pumps.Add(pump);
             }
-            
-            // while true with a thread.sleep to refresh the screen every 100 miliseconds
-            
+
             while (true)
             {
 
@@ -127,24 +130,29 @@ namespace MOD005424_FuellingAroundLTD
                      */
                 }
 
+                float totalLitersDispenced = 0f;
+                foreach (float amount in litresDispencedList)
+                {
+                    totalLitersDispenced += amount;
+                }
 
      
                 //All the calculations will be done in separate methods in the next iteration to make it reusable, at the moment it was only needed in one instance.
 
-                WriteAt("Number of vehicles fuelled = " + carsFuelled, 90, 0);
-                WriteAt("Total Litres of petrol sold = " + (carsFuelled * 27)+"L", 90, 1);
-                WriteAt("Till total = £" + (carsFuelled * 27f * 1.12f), 90, 2);
-                WriteAt("Commission owed to the attendant = £" + (carsFuelled * 27f * 1.12f / 100), 90, 3);
-                WriteAt("Number of cars that left without being fuelled = 0", 90, 6);
+                WriteAt("Number of vehicles fuelled = " + carsFuelled, 90, 1);
+                WriteAt("Total Litres of petrol sold = " + totalLitersDispenced +"L", 90, 2);
+                WriteAt("Till total = £" + (totalLitersDispenced * 1.12f), 90, 3);
+                WriteAt("Commission owed to the attendant = £" + (totalLitersDispenced * 1.12f / 100), 90, 4);
+                WriteAt("Number of cars that left without being fuelled = 0", 90, 7);
 
-                // The unswer is always 0 (on line 138) because the remaining cars are still in the queue.
+                // The reason why the unswer is always 0 is because the remaining cars are still in the queue.
 
                 WriteAt("Please type the number of an available pump to direct the next customer to:", 0, 5);
-                WriteAt("Number of cars arrived at the petrol station = " + cars, 90, 4);
-                WriteAt("Number of cars in the queue still to be fuelled = " + (cars - carsFuelled), 90, 5);
-                WriteAt("Today's petrol price pe Litre is £1.12", 90, 0);
-                WriteAt("", 0, 6);                    
-                
+                WriteAt("Number of cars arrived at the petrol station = " + cars, 90, 5);
+                WriteAt("Number of cars in the queue still to be fuelled = " + (cars - carsFuelled), 90, 6);
+                WriteAt("Today's petrol price per Litre is £1.12", 90, 0);
+                WriteAt("", 0, 6);
+
                 if (Console.KeyAvailable)
                 {
 
@@ -156,53 +164,53 @@ namespace MOD005424_FuellingAroundLTD
                     {
                         case ConsoleKey.D1:
                             carsFuelled += 1;
-                           pumps[0].SetTimer();
+                           pumps[0].SetTimer(random.Next(16000, 20000));
                              break;
 
                         case ConsoleKey.D2:
                             carsFuelled += 1;
-                            pumps[1].SetTimer();
+                            pumps[1].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D3:
                             carsFuelled += 1;
-                            pumps[2].SetTimer();
+                            pumps[2].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D4:
                             carsFuelled += 1;
-                            pumps[3].SetTimer();
+                            pumps[3].SetTimer(random.Next(16000, 20000));
                             break;
 
                         case ConsoleKey.D5:
                             carsFuelled += 1;
-                            pumps[4].SetTimer();
+                            pumps[4].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D6:
                             carsFuelled += 1;
-                            pumps[5].SetTimer();
+                            pumps[5].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D7:
                             carsFuelled += 1;
-                            pumps[6].SetTimer();
+                            pumps[6].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D8:
                             carsFuelled += 1;
-                            pumps[7].SetTimer();
+                            pumps[7].SetTimer(random.Next(16000, 20000));
 
                             break;
 
                         case ConsoleKey.D9:
                             carsFuelled += 1;
-                            pumps[8].SetTimer();
+                            pumps[8].SetTimer(random.Next(16000, 20000));
 
                             break;
                     }
