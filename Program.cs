@@ -214,8 +214,7 @@ namespace MOD005424_FuellingAroundLTD
 
                             break;
                     }
-                    /* Switch code from https://stackoverflow.com/questions/5891538/listen-for-key-press-in-net-console-app
-                     */
+                    
                 }
                 Thread.Sleep(100);
 
