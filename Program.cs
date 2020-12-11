@@ -12,7 +12,6 @@ namespace MOD005424_FuellingAroundLTD
         protected static int origRow;
         protected static int origCol;
         protected static List<Pump> pumps = new List<Pump>();
-        protected static int pumpNumber = 0;
         public static System.Timers.Timer aTimer;
         private static int cars;
         static Random random = new Random();
